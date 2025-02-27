@@ -3,7 +3,7 @@ Description = Podman Container %N
 
 [Container]
 AutoUpdate = registry
-Image = dockerpull.org/kanidm/server
+Image = dockerproxy.net/kanidm/server
 
 Environment = KANIDM_DOMAIN=bonjour.zone
 Environment = KANIDM_ORIGIN=https://auth.bonjour.zone
