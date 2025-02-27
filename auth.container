@@ -1,0 +1,28 @@
+[Unit]
+Description = Podman Container %N
+
+[Container]
+AutoUpdate = registry
+Image = dockerpull.org/kanidm/server
+
+Environment = KANIDM_DOMAIN=bonjour.zone
+Environment = KANIDM_ORIGIN=https://auth.bonjour.zone
+Environment = KANIDM_BINDADDRESS=[::]:8443
+Environment = KANIDM_LDAPBINDADDRESS=[::]:3636
+Environment = KANIDM_TLS_CHAIN=/config/pub.pem
+Environment = KANIDM_TLS_KEY=/config/key.pem
+Environment = KANIDM_TRUST_X_FORWARD_FOR=true
+Environment = KANIDM_DB_PATH=/data/kanidm.db
+
+PublishPort = 30010:8443
+PublishPort = 30011:3636
+
+SecurityLabelDisable = true
+Volume = ./config:/config:ro
+Volume = auth.volume:/data/
+
+[Service]
+Restart = on-failure
+
+[Install]
+WantedBy = default.target

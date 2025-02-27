@@ -1,0 +1,34 @@
+http:
+  services:
+    auth:
+      loadBalancer:
+        servers:
+          - url: https://host.containers.internal:30010
+        serversTransport: auth
+  serversTransports:
+    auth:
+      insecureSkipVerify: true
+  routers:
+    auth: 
+      entryPoints: https
+      rule: Host(`auth.bonjour.zone`)
+      service: auth
+tcp:
+  services:
+    auth:
+      loadBalancer:
+        servers:
+          - address: host.containers.internal:30011
+            tls: true
+        serversTransport: auth
+  serversTransports:
+    auth:
+      tls:
+        insecureSkipVerify: true
+  routers:
+    auth: 
+      entryPoints: auth
+      tls:
+        certResolver: default
+      rule: HostSNI(`auth.bonjour.zone`)
+      service: auth
