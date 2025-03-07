@@ -10,7 +10,8 @@ http:
       insecureSkipVerify: true
   routers:
     auth: 
-      entryPoints: https
+      entryPoints: 
+        - https
       rule: Host(`auth.bonjour.zone`)
       service: auth
 tcp:
@@ -27,7 +28,8 @@ tcp:
         insecureSkipVerify: true
   routers:
     auth: 
-      entryPoints: auth
+      entryPoints: 
+        - auth
       tls:
         certResolver: default
       rule: HostSNI(`auth.bonjour.zone`)
