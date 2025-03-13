@@ -14,8 +14,8 @@ Environment = KANIDM_TRUST_X_FORWARD_FOR=true
 Environment = KANIDM_DB_PATH=/data/kanidm.db
 
 SecurityLabelDisable = true
-Volume = ./key.pem:/config/pub.pem:ro
-Volume = ./pub.pem:/config/key.pem:ro
+Volume = ./pub.pem:/config/pub.pem:ro
+Volume = ./key.pem:/config/key.pem:ro
 
 [Service]
 Restart = on-failure
