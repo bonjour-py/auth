@@ -7,8 +7,6 @@ ServiceName = auth
 PublishPort = 30010:8443
 PublishPort = 30011:3636
 
-Volume = ./key.pem:/config/pub.pem:ro
-Volume = ./pub.pem:/config/key.pem:ro
 Volume = auth.volume:/data/
 
 [Service]
