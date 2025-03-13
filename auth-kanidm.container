@@ -1,7 +1,6 @@
-[Unit]
-Description = Podman Container %N
-
 [Container]
+Pod = auth.pod
+
 AutoUpdate = registry
 Image = dockerproxy.net/kanidm/server
 
@@ -14,15 +13,5 @@ Environment = KANIDM_TLS_KEY=/config/key.pem
 Environment = KANIDM_TRUST_X_FORWARD_FOR=true
 Environment = KANIDM_DB_PATH=/data/kanidm.db
 
-PublishPort = 30010:8443
-PublishPort = 30011:3636
-
-SecurityLabelDisable = true
-Volume = ./config:/config:ro
-Volume = auth.volume:/data/
-
 [Service]
 Restart = on-failure
-
-[Install]
-WantedBy = default.target
